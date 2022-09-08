@@ -15,7 +15,9 @@ Then the following code should work:
 var kiwi = require('kiwi-schema');
 var fs = require('fs');
 
-var schema = kiwi.compileSchema(fs.readFileSync('test.kiwi', 'utf8'));
+var schemaText = fs.readFileSync('test.kiwi', 'utf8');
+var schemaTree = kiwi.parseSchema(schemaText);
+var schema = kiwi.compileSchema(schemaTree);
 var buffer = schema.encodeTest({x: 123});
 var test = schema.decodeTest(buffer);
 
